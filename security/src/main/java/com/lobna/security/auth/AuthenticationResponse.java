@@ -1,7 +1,9 @@
 package com.lobna.security.auth;
 
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+@Builder
 @NoArgsConstructor
 public class AuthenticationResponse {
 

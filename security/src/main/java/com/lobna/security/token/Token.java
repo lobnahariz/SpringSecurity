@@ -1,0 +1,39 @@
+package com.lobna.security.token;
+
+import com.lobna.security.user.User;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Entity
+public class Token {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    private String token;
+
+    @Enumerated(EnumType.STRING)
+    private TokenType tokenType;
+
+    private boolean expired;
+
+    private boolean revoked;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public Token() {
+    }
+
+    public Token(String token, TokenType tokenType, boolean expired, boolean revoked, User user) {
+        this.token = token;
+        this.tokenType = tokenType;
+        this.expired = expired;
+        this.revoked = revoked;
+        this.user = user;
+    }
+}
